@@ -27,4 +27,5 @@ sed -i 's/rack1/1b/g' /etc/cassandra/cassandra-rackdc.properties;
 sed -i 's/Ec2Snitch/GossipingPropertyFileSnitch/g' /etc/cassandra/cassandra.yaml;
 ip=`/sbin/ifconfig eth0 | grep 'inet addr' | cut -d: -f2 | awk '{print $1}'`
 sed -i 's/192.168.10.10/'"$ip"'/g' /etc/cassandra/cassandra.yaml;
-sed -i 's#/var/lib#/mnt1#g' cassandra.yaml
+sed -i 's#/var/lib/cassandra/data#/mnt1/cassandra/data#g' cassandra.yaml
+sed -i 's#/var/lib/cassandra/commitlog#/mnt2/cassandra/commitlog#g' cassandra.yaml
