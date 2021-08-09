@@ -1,0 +1,13 @@
+---
+- hosts: cassandra
+  tasks:
+    - name: copy file to remote host
+      copy:
+        src: /home/ubuntu/diskutil.sh
+        dest: /home/ubuntu
+        mode: +x
+    - name: create a cron in node systems
+      cron:
+        name: "backup cron"
+        user: ubuntu
+        job: "/home/ubuntu/diskutil.sh"
