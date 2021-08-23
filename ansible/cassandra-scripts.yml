@@ -1,0 +1,18 @@
+---
+- hosts: cassandra
+  become: yes
+  tasks:
+    - name: create directory
+      file:
+        path: /etc/cassmon
+        state: directory
+    - name: copy file to remote host
+      copy:
+        src: /home/ubuntu/config.yml
+        dest: /etc/cassmon
+    - name: copy file to remote host
+      copy:
+        src: /home/ubuntu/cassandra-agent.jar
+        dest: /etc/cassmon
+    - name: execute scripts
+      command: java -jar cassandra-agent.jar config.yml &
